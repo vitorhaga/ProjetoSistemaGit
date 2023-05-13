@@ -1,3 +1,5 @@
+import ClienteBD from "../Persistencia/ClienteDB.js";
+
 export default class Cliente{//# define atributo como privado
     #nome;
     #cpf;
@@ -84,6 +86,33 @@ export default class Cliente{//# define atributo como privado
 
     set email(novoEmail){
         this.#email = novoEmail;
+    }
+
+    async gravar(){
+        const clienteBD = new ClienteBD();
+        await clienteBD.incluir(this);
+    }
+
+    async atualizar(){
+        const clienteBD = new ClienteBD();
+        await clienteBD.alterar(this);
+    }
+
+    async removerDoBancoDados(){
+        const clienteBD = new ClienteBD();
+        await clienteBD.excluir(this);
+    }
+
+    async consultar(termo){
+        const clienteBD = new ClienteBD();
+        const clientes  = await clienteBD.consultar(termo);
+        return clientes;
+    }
+
+    async consultarCPF(cpf){
+        const clienteBD = new ClienteBD();
+        const cliente  = await clienteBD.consultarCPF(cpf);
+        return cliente;
     }
 
     //override ou sobescrita do método JSON

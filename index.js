@@ -1,6 +1,6 @@
 import Cliente from './Modelo/Cliente.js';
 
-let objCliente = new Cliente('4036657829',
+let objCliente = new Cliente('45036657829',
                           'Vitor Haga',
                           'Rua Itagua',
                           'Bairro Jardim Bongiovani',
@@ -11,4 +11,28 @@ let objCliente = new Cliente('4036657829',
 
 objCliente.nome = 'Vitor Hugo Tsuyoshi Guimarães Haga';
 
-console.log(objCliente.toJson());
+// objCliente.removerDoBancoDados(()=>{
+//     console.log("Cliente Exckuído com sucesso!!!");
+// })
+
+// objCliente.atualizar().then(()=>{
+//     console.log("Cliente Atualizado com sucesso!!!");
+// })
+
+// objCliente.gravar().then(()=>{
+//     console.log("Cliente Gravado com sucesso!!!");
+// })
+
+objCliente = new Cliente();
+
+// objCliente.consultar('Vitor Hugo Tsuyoshi Guimarães Haga').then((clientes)=>{
+//     clientes.forEach((cliente)=>{
+//         console.log(cliente.toJson());
+//     })
+// })
+
+objCliente.consultarCPF('45036657829').then((clientes)=>{
+    clientes.forEach((cliente)=>{
+        console.log(cliente.toJson());
+    })
+})

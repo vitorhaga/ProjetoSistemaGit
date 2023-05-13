@@ -6,13 +6,13 @@ export default async function conectar(){
     }
 
     const conexao = await mysql.createConnection({
-        hots:"localhost",
+        host:"localhost",
         user:"root",
         password:"",
         database:"backend"
     });
 
     global.conexao = conexao;
-    
+
     return conexao
 }

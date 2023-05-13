@@ -1,11 +1,11 @@
 import Cliente from '../Modelo/Cliente.js';
-import conectar from './Conexao';
+import conectar from './Conexao.js';
 
-export default class ClienteDB{
+export default class ClienteBD{
     async incluir(cliente){
         if(cliente instanceof Cliente){
             const conexao = await conectar();
-            const sql = "INSERT INTO cliente(cpf, nome ,endereco ,bairro ,cidade\
+            const sql = "INSERT INTO cliente(cpf, nome ,endereco ,bairro ,cidade,\
                                              uf ,telefone ,email) \
                                              Values(?,?,?,?,?,?,?,?)";
             const valores = [cliente.cpf, cliente.nome, cliente.endereco,
@@ -31,7 +31,7 @@ export default class ClienteDB{
     async excluir(cliente){
         if(cliente instanceof Cliente){
             const conexao = await conectar();
-            const sql = "DELETE cliente WHERE cpf = ?";
+            const sql = "DELETE FROM cliente WHERE cpf = ?";
             const valores = [cliente.cpf];
             await conexao.query(sql,valores);
         }
@@ -39,7 +39,7 @@ export default class ClienteDB{
 
     async consultar(termo){
         const conexao = await conectar();
-        const sql = "SELECT * FROM cliente WHERE nome ILIKE ?";
+        const sql = "SELECT * FROM cliente WHERE nome LIKE ?";
         const valores = ['%' + termo + '%'];
         const [rows] = await conexao.query(sql, valores);
         const listClientes = [];
@@ -54,7 +54,7 @@ export default class ClienteDB{
 
     async consultarCPF(cpf){
         const conexao = await conectar();
-        const sql = "SELECT * FROM cliente WHERE cpf ILIKE ?";
+        const sql = "SELECT * FROM cliente WHERE cpf LIKE ?";
         const valores = [cpf];
         const [rows] = await conexao.query(sql, valores);
         const listClientes = [];
