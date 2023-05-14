@@ -2,7 +2,7 @@ import mysql from 'mysql2/promise';
 
 export default async function conectar(){
     if(global.conexao && global.conexao.status != "disconnected"){
-        return glogal.conexao;
+        return global.conexao;
     }
 
     const conexao = await mysql.createConnection({
