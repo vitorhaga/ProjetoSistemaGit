@@ -39,7 +39,7 @@ import Produto from './Modelo/Produto.js';
 // })
 //#endregion
 
-//#region Produtos
+//#region Trabalho
 let objetoProduto = new Produto(null,'Sopa', '20');
 
 objetoProduto.gravar().then(()=>{
@@ -61,6 +61,4 @@ objetoProduto.gravar().then(()=>{
         });
     });
 });
-
-
 //#endregion
